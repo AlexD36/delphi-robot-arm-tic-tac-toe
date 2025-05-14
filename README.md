@@ -36,7 +36,7 @@
 1. **Compile and Run:**
    Build the project and run the application from the Delphi IDE.
 
-2. **Play the Game:**
+2. **Play the Game**
 
 ## Customization
 
