@@ -46,6 +46,15 @@ type
     procedure btn32Click(Sender: TObject);
     procedure btn33Click(Sender: TObject);
     procedure btnStartClick(Sender: TObject);
+    procedure btn211Click(Sender: TObject);
+    procedure btn212Click(Sender: TObject);
+    procedure btn213Click(Sender: TObject);
+    procedure btn221Click(Sender: TObject);
+    procedure btn222Click(Sender: TObject);
+    procedure btn223Click(Sender: TObject);
+    procedure btn231Click(Sender: TObject);
+    procedure btn232Click(Sender: TObject);
+    procedure btn233Click(Sender: TObject);
     private
     AnimState: TAnimationState;
     tickCount: Integer;
@@ -223,20 +232,14 @@ begin
       end;
     asBtn11:
       begin
-        // pas 1: mergem mai întâi în poziția de start
         d1 := Move(leftArmAngle1, DegToRad(100));
         d2 := Move(leftArmAngle2, DegToRad(-30));
         d3 := Move(leftArmAngle3, DegToRad(-30));
         d4 := Move(leftArmAngle4, DegToRad(-30));
         if d1 and d2 and d3 and d4 then
         begin
-          // pas 2: după ce ajunge în poziția de start, trecem în pasul final
-          AnimState := asBtn11;
-          leftArmAngle1 := DegToRad(100); // garantăm poziția de start
-          targetAngle1 := DegToRad(100);
-          targetAngle2 := DegToRad(-38);
-          targetAngle3 := DegToRad(-38);
-          targetAngle4 := DegToRad(-38);
+          AnimState := asIdle;
+          EnableAllButtons;
         end;
       end;
         asBtn12:
@@ -495,6 +498,7 @@ begin
 end;
 
 
+//Proceduri pentru brat x
 procedure TForm1.btn11Click(Sender: TObject);
 begin
   if AnimState = asIdle then
@@ -575,7 +579,7 @@ begin
     DisableAllButtons;
   end;
 end;
-
+            //btn start
 procedure TForm1.btnStartClick(Sender: TObject);
 begin
   if AnimState = asIdle then
@@ -584,6 +588,86 @@ begin
     DisableAllButtons;
   end;
 end;
+           //proceduri pentru butoane brat 0
+procedure TForm1.btn211Click(Sender: TObject);
+begin
+  if AnimState = asIdle then
+  begin
+    AnimState := asBtn211;
+    DisableAllButtons;
+  end;
+end;
 
+procedure TForm1.btn212Click(Sender: TObject);
+begin
+  if AnimState = asIdle then
+  begin
+    AnimState := asBtn212;
+    DisableAllButtons;
+  end;
+end;
+
+procedure TForm1.btn213Click(Sender: TObject);
+begin
+  if AnimState = asIdle then
+  begin
+    AnimState := asBtn213;
+    DisableAllButtons;
+  end;
+end;
+
+procedure TForm1.btn221Click(Sender: TObject);
+begin
+  if AnimState = asIdle then
+  begin
+    AnimState := asBtn221;
+    DisableAllButtons;
+  end;
+end;
+
+procedure TForm1.btn222Click(Sender: TObject);
+begin
+  if AnimState = asIdle then
+  begin
+    AnimState := asBtn222;
+    DisableAllButtons;
+  end;
+end;
+
+procedure TForm1.btn223Click(Sender: TObject);
+begin
+  if AnimState = asIdle then
+  begin
+    AnimState := asBtn223;
+    DisableAllButtons;
+  end;
+end;
+
+procedure TForm1.btn231Click(Sender: TObject);
+begin
+  if AnimState = asIdle then
+  begin
+    AnimState := asBtn231;
+    DisableAllButtons;
+  end;
+end;
+
+procedure TForm1.btn232Click(Sender: TObject);
+begin
+  if AnimState = asIdle then
+  begin
+    AnimState := asBtn232;
+    DisableAllButtons;
+  end;
+end;
+
+procedure TForm1.btn233Click(Sender: TObject);
+begin
+  if AnimState = asIdle then
+  begin
+    AnimState := asBtn233;
+    DisableAllButtons;
+  end;
+end;
 end.
 
