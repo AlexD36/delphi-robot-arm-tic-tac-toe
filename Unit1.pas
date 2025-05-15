@@ -178,8 +178,6 @@ begin
     MoveTo(170, 240); LineTo(430, 240);
     MoveTo(150, 300); LineTo(410, 300);
 
-    Canvas.TextOut(10, 10, Format('A2: %.1f', [RadToDeg(leftArmAngle2)]));
-
   end;
 
   DeseneazaBratStanga(paintBackground.Canvas);
@@ -188,7 +186,7 @@ end;
 procedure TForm1.AnimateArms;
 var
   Step: Double;
-  d1, d2, d3, d4: Boolean;
+  b1,b2,b3,b4,d1, d2, d3, d4: Boolean;
 
   function Move(var ang: Double; target: Double): Boolean;
   begin
@@ -213,7 +211,7 @@ begin
   case AnimState of
     asBtnStart:
       begin
-        d1 := Move(leftArmAngle1, DegToRad(90));
+        d1 := Move(leftArmAngle1, DegToRad(100));
         d2 := Move(leftArmAngle2, DegToRad(-30));
         d3 := Move(leftArmAngle3, DegToRad(-30));
         d4 := Move(leftArmAngle4, DegToRad(-30));
@@ -225,14 +223,20 @@ begin
       end;
     asBtn11:
       begin
+        // pas 1: mergem mai întâi în poziția de start
         d1 := Move(leftArmAngle1, DegToRad(100));
-        d2 := Move(leftArmAngle2, DegToRad(-38));
-        d3 := Move(leftArmAngle3, DegToRad(-38));
-        d4 := Move(leftArmAngle4, DegToRad(-38));
+        d2 := Move(leftArmAngle2, DegToRad(-30));
+        d3 := Move(leftArmAngle3, DegToRad(-30));
+        d4 := Move(leftArmAngle4, DegToRad(-30));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
-          EnableAllButtons;
+          // pas 2: după ce ajunge în poziția de start, trecem în pasul final
+          AnimState := asBtn11;
+          leftArmAngle1 := DegToRad(100); // garantăm poziția de start
+          targetAngle1 := DegToRad(100);
+          targetAngle2 := DegToRad(-38);
+          targetAngle3 := DegToRad(-38);
+          targetAngle4 := DegToRad(-38);
         end;
       end;
         asBtn12:
@@ -427,7 +431,7 @@ begin
   a4 := leftArmAngle4;
 
   // Culori
-  colMain  := RGB(80, 80, 80);
+  colMain  := RGB(200, 200, 200);
   colDark  := RGB(50, 50, 50);
   colLight := RGB(180, 180, 180);
 
@@ -487,7 +491,7 @@ begin
     OffsetPoint(OffsetPoint(j5, totalAngle - Pi/2, openOffset), totalAngle, FingerLength)
   ]);
 
-  Canvas.Pen.Width := 1;
+  Canvas.Pen.Width := 2;
 end;
 
 
