@@ -46,3 +46,9 @@
 ## Contributing
 
 Pull requests and suggestions are welcome! If you have ideas for smarter robot logic, better animation, or UX improvements, feel free to fork the repo and contribute.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
