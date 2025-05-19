@@ -31,6 +31,7 @@ type
     btn232: TButton;
     btn233: TButton;
     btnStart: TButton;
+    PaintBox1: TPaintBox;
 
     procedure FormCreate(Sender: TObject);
     procedure paintBackgroundPaint(Sender: TObject);
@@ -66,13 +67,19 @@ type
     targetAngle2: Double;
     targetAngle3: Double;
     targetAngle4: Double;
+    rightArmAngle1: Double;
+    rightArmAngle2: Double;
+    rightArmAngle3: Double;
+    rightArmAngle4: Double;
     angleOpenStanga: Double;
+    angleOpenDreapta: Double;
 
     procedure AnimateArms;
     procedure AnimateBrate;
     procedure DisableAllButtons;
     procedure EnableAllButtons;
     procedure DeseneazaBratStanga(Canvas: TCanvas);
+    procedure DeseneazaBratDreapta(Canvas: TCanvas);
 
   end;
 
@@ -190,12 +197,24 @@ begin
   end;
 
   DeseneazaBratStanga(paintBackground.Canvas);
+  DeseneazaBratDreapta(paintBackground.Canvas);
+end;
+
+procedure TForm1.AnimateBrate;
+const
+  StepD = Pi/30;
+  StepS = Pi/24;
+begin
+  angleOpenDreapta := angleOpenDreapta + StepD;
+  if angleOpenDreapta > 2*Pi then angleOpenDreapta := angleOpenDreapta - 2*Pi;
+  angleOpenStanga := angleOpenStanga + StepS;
+  if angleOpenStanga > 2*Pi then angleOpenStanga := angleOpenStanga - 2*Pi;
 end;
 
 procedure TForm1.AnimateArms;
 var
   Step: Double;
-  b1,b2,b3,b4,d1, d2, d3, d4: Boolean;
+  d1, d2, d3, d4, d5, d6, d7, d8: Boolean;
 
   function Move(var ang: Double; target: Double): Boolean;
   begin
@@ -214,17 +233,22 @@ var
     end;
   end;
 
+
 begin
   Step := DegToRad(1.5);
 
   case AnimState of
     asBtnStart:
       begin
-        d1 := Move(leftArmAngle1, DegToRad(100));
-        d2 := Move(leftArmAngle2, DegToRad(-30));
-        d3 := Move(leftArmAngle3, DegToRad(-30));
-        d4 := Move(leftArmAngle4, DegToRad(-30));
-        if d1 and d2 and d3 and d4 then
+        d1 := Move(leftArmAngle1, DegToRad(90));
+        d2 := Move(leftArmAngle2, DegToRad(-25));
+        d3 := Move(leftArmAngle3, DegToRad(-25));
+        d4 := Move(leftArmAngle4, DegToRad(-25));
+        d5 := Move(rightArmAngle1, DegToRad(75));
+        d6 := Move(rightArmAngle2, DegToRad(25));
+        d7 := Move(rightArmAngle3, DegToRad(25));
+        d8 := Move(rightArmAngle4, DegToRad(45));
+        if d1 and d2 and d3 and d4 and d5 and d6 and d7 and d8 then
         begin
           AnimState := asIdle;
           EnableAllButtons;
@@ -233,9 +257,9 @@ begin
     asBtn11:
       begin
         d1 := Move(leftArmAngle1, DegToRad(100));
-        d2 := Move(leftArmAngle2, DegToRad(-30));
-        d3 := Move(leftArmAngle3, DegToRad(-30));
-        d4 := Move(leftArmAngle4, DegToRad(-30));
+        d2 := Move(leftArmAngle2, DegToRad(-38));
+        d3 := Move(leftArmAngle3, DegToRad(-38));
+        d4 := Move(leftArmAngle4, DegToRad(-38));
         if d1 and d2 and d3 and d4 then
         begin
           AnimState := asIdle;
@@ -292,10 +316,10 @@ begin
       end;
     asBtn23:
       begin
-        d1 := Move(leftArmAngle1, DegToRad(48));
-        d2 := Move(leftArmAngle2, DegToRad(-25));
-        d3 := Move(leftArmAngle3, DegToRad(-15));
-        d4 := Move(leftArmAngle4, DegToRad(-10));
+        d1 := Move(leftArmAngle1, DegToRad(37));
+        d2 := Move(leftArmAngle2, DegToRad(-16));
+        d3 := Move(leftArmAngle3, DegToRad(-10));
+        d4 := Move(leftArmAngle4, DegToRad(-5));
         if d1 and d2 and d3 and d4 then
         begin
           AnimState := asIdle;
@@ -338,6 +362,115 @@ begin
           EnableAllButtons;
         end;
       end;
+      asBtn211:
+      begin
+        d1 := Move(rightArmAngle1, DegToRad(135));
+        d2 := Move(rightArmAngle2, DegToRad(10));
+        d3 := Move(rightArmAngle3, DegToRad(10));
+        d4 := Move(rightArmAngle4, DegToRad(3));
+        if d1 and d2 and d3 and d4 then
+        begin
+          AnimState := asIdle;
+          EnableAllButtons;
+        end;
+      end;
+      asBtn212:
+      begin
+        d1 := Move(rightArmAngle1, DegToRad(95));
+        d2 := Move(rightArmAngle2, DegToRad(35));
+        d3 := Move(rightArmAngle3, DegToRad(25));
+        d4 := Move(rightArmAngle4, DegToRad(40));
+        if d1 and d2 and d3 and d4 then
+        begin
+          AnimState := asIdle;
+          EnableAllButtons;
+        end;
+      end;
+      asBtn213:
+      begin
+        d1 := Move(rightArmAngle1, DegToRad(70));
+        d2 := Move(rightArmAngle2, DegToRad(35));
+        d3 := Move(rightArmAngle3, DegToRad(45));
+        d4 := Move(rightArmAngle4, DegToRad(55));
+        if d1 and d2 and d3 and d4 then
+        begin
+          AnimState := asIdle;
+          EnableAllButtons;
+        end;
+      end;
+      asBtn221:
+      begin
+        d1 := Move(rightArmAngle1, DegToRad(132));
+        d2 := Move(rightArmAngle2, DegToRad(20));
+        d3 := Move(rightArmAngle3, DegToRad(20));
+        d4 := Move(rightArmAngle4, DegToRad(13));
+        if d1 and d2 and d3 and d4 then
+        begin
+          AnimState := asIdle;
+          EnableAllButtons;
+        end;
+      end;
+      asBtn222:
+      begin
+        d1 := Move(rightArmAngle1, DegToRad(100));
+        d2 := Move(rightArmAngle2, DegToRad(35));
+        d3 := Move(rightArmAngle3, DegToRad(50));
+        d4 := Move(rightArmAngle4, DegToRad(30 ));
+        if d1 and d2 and d3 and d4 then
+        begin
+          AnimState := asIdle;
+          EnableAllButtons;
+        end;
+      end;
+      asBtn223:
+      begin
+        d1 := Move(rightArmAngle1, DegToRad(70));
+        d2 := Move(rightArmAngle2, DegToRad(45));
+        d3 := Move(rightArmAngle3, DegToRad(60));
+        d4 := Move(rightArmAngle4, DegToRad(62));
+        if d1 and d2 and d3 and d4 then
+        begin
+          AnimState := asIdle;
+          EnableAllButtons;
+        end;
+      end;
+      asBtn231:
+      begin
+        d1 := Move(rightArmAngle1, DegToRad(100));
+        d2 := Move(rightArmAngle2, DegToRad(-38));
+        d3 := Move(rightArmAngle3, DegToRad(-38));
+        d4 := Move(rightArmAngle4, DegToRad(-38));
+        if d1 and d2 and d3 and d4 then
+        begin
+          AnimState := asIdle;
+          EnableAllButtons;
+        end;
+      end;
+      asBtn232:
+      begin
+        d1 := Move(rightArmAngle1, DegToRad(118));
+        d2 := Move(rightArmAngle2, DegToRad(35));
+        d3 := Move(rightArmAngle3, DegToRad(40));
+        d4 := Move(rightArmAngle4, DegToRad(45));
+        if d1 and d2 and d3 and d4 then
+        begin
+          AnimState := asIdle;
+          EnableAllButtons;
+        end;
+      end;
+      asBtn233:
+      begin
+        d1 := Move(rightArmAngle1, DegToRad(100));
+        d2 := Move(rightArmAngle2, DegToRad(-38));
+        d3 := Move(rightArmAngle3, DegToRad(-38));
+        d4 := Move(rightArmAngle4, DegToRad(-38));
+        if d1 and d2 and d3 and d4 then
+        begin
+          AnimState := asIdle;
+          EnableAllButtons;
+        end;
+      end;
+
   end;
 end;
 
@@ -363,14 +496,6 @@ begin
   end;
 
   paintBackground.Invalidate;
-end;
-
-procedure TForm1.AnimateBrate;
-const
-  StepS = Pi/24;
-begin
-  angleOpenStanga := angleOpenStanga + StepS;
-  if angleOpenStanga > 2*Pi then angleOpenStanga := angleOpenStanga - 2*Pi;
 end;
 
   //BaseY = 360;
@@ -432,6 +557,129 @@ begin
   a2 := leftArmAngle2;
   a3 := leftArmAngle3;
   a4 := leftArmAngle4;
+
+  // Culori
+  colMain  := RGB(200, 200, 200);
+  colDark  := RGB(50, 50, 50);
+  colLight := RGB(180, 180, 180);
+
+  // Poziții articulatii
+  j1 := Point(BaseX, BaseY);
+  j2 := OffsetPoint(j1, a1, L1);
+  j3 := OffsetPoint(j2, a1 + a2, L2);
+  j4 := OffsetPoint(j3, a1 + a2 + a3, L3);
+  j5 := OffsetPoint(j4, a1 + a2 + a3 + a4, L4);
+
+  // Baza robotului
+  Canvas.Brush.Color := colDark;
+  Canvas.Pen.Color := colDark;
+  Canvas.RoundRect(
+    j1.X - BaseW div 2, j1.Y,
+    j1.X + BaseW div 2, j1.Y + BaseH,
+    CornerR, CornerR
+  );
+  Canvas.Pen.Color := colLight;
+  Canvas.MoveTo(j1.X - BaseW div 2 + 2, j1.Y + 3);
+  Canvas.LineTo(j1.X + BaseW div 2 - 2, j1.Y + 3);
+
+  // Brațele
+  Canvas.Brush.Color := colMain;
+  Canvas.Pen.Color := colDark;
+  DrawSegment(j1, j2, a1, W1);
+  DrawSegment(j2, j3, a1 + a2, W2);
+  DrawSegment(j3, j4, a1 + a2 + a3, W3);
+  DrawSegment(j4, j5, a1 + a2 + a3 + a4, W4);
+
+  // Nituri
+  Canvas.Brush.Color := colMain;
+  Canvas.Pen.Color := colDark;
+  Canvas.Ellipse(j1.X - BoltRadius, j1.Y - BoltRadius, j1.X + BoltRadius, j1.Y + BoltRadius);
+  Canvas.Ellipse(j2.X - BoltRadius, j2.Y - BoltRadius, j2.X + BoltRadius, j2.Y + BoltRadius);
+  Canvas.Ellipse(j3.X - BoltRadius, j3.Y - BoltRadius, j3.X + BoltRadius, j3.Y + BoltRadius);
+  Canvas.Ellipse(j4.X - BoltRadius, j4.Y - BoltRadius, j4.X + BoltRadius, j4.Y + BoltRadius);
+  Canvas.Ellipse(j5.X - BoltRadius, j5.Y - BoltRadius, j5.X + BoltRadius, j5.Y + BoltRadius);
+
+  // Gheare (gripper)
+  totalAngle := a1 + a2 + a3 + a4;
+  openOffset := Round(MaxFingerSpread * Scale * (Sin(angleOpenStanga) * 0.5 + 0.5));
+
+  Canvas.Pen.Width := Round(2 * Scale);
+  Canvas.Pen.Color := colDark;
+  Canvas.Brush.Color := colMain;
+
+  Canvas.Polygon([
+    j5,
+    OffsetPoint(j5, totalAngle + Pi/2, openOffset),
+    OffsetPoint(OffsetPoint(j5, totalAngle + Pi/2, openOffset), totalAngle, FingerLength)
+  ]);
+
+  Canvas.Polygon([
+    j5,
+    OffsetPoint(j5, totalAngle - Pi/2, openOffset),
+    OffsetPoint(OffsetPoint(j5, totalAngle - Pi/2, openOffset), totalAngle, FingerLength)
+  ]);
+
+  Canvas.Pen.Width := 2;
+end;
+
+procedure TForm1.DeseneazaBratDreapta(Canvas: TCanvas);
+const
+  BaseX = 500;
+  BaseY = 380;
+  Scale = 1;
+
+  // Lungimi segmente
+  L1 = 100;
+  L2 = 70;
+  L3 = 85;
+  L4 = 60;
+
+  // Grosimi vizuale
+  W1 = 12;
+  W2 = 10;
+  W3 = 8;
+  W4 = 8;
+  BoltRadius = 6;
+
+  // Dimensiuni bază
+  BaseW = Round(60 * Scale);
+  BaseH = Round(30 * Scale);
+  CornerR = Round(10 * Scale);
+
+  // Lungime și deschidere gheare
+  FingerLength = 10;
+  MaxFingerSpread = 15;
+var
+  j1, j2, j3, j4, j5: TPoint;
+  a1, a2, a3, a4, totalAngle: Double;
+  colMain, colDark, colLight: TColor;
+  openOffset: Integer;
+
+  function OffsetPoint(P: TPoint; angle: Double; dist: Integer): TPoint;
+  begin
+    Result := Point(
+      P.X + Round(dist * Cos(angle)),
+      P.Y - Round(dist * Sin(angle))
+    );
+  end;
+
+  procedure DrawSegment(p1, p2: TPoint; angle: Double; thickness: Integer);
+  begin
+    Canvas.Polygon([
+      p1,
+      OffsetPoint(p1, angle + Pi/2, thickness),
+      OffsetPoint(p2, angle + Pi/2, thickness),
+      p2,
+      OffsetPoint(p2, angle - Pi/2, thickness),
+      OffsetPoint(p1, angle - Pi/2, thickness)
+    ]);
+  end;
+begin
+  // Unghiurile relative
+  a1 := rightArmAngle1;
+  a2 := rightArmAngle2;
+  a3 := rightArmAngle3;
+  a4 := rightArmAngle4;
 
   // Culori
   colMain  := RGB(200, 200, 200);

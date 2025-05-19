@@ -24,10 +24,19 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     OnPaint = paintBackgroundPaint
-    ExplicitLeft = 184
-    ExplicitTop = 280
-    ExplicitWidth = 105
-    ExplicitHeight = 105
+    ExplicitLeft = -8
+  end
+  object Image1: TImage
+    Left = 511
+    Top = 400
+    Width = 105
+    Height = 105
+  end
+  object PaintBox1: TPaintBox
+    Left = 288
+    Top = 336
+    Width = 105
+    Height = 105
   end
   object btn11: TButton
     Left = 24
@@ -177,7 +186,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 9
-    OnClick = btn11Click
+    OnClick = btn213Click
   end
   object btn212: TButton
     Left = 447
@@ -192,7 +201,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 10
-    OnClick = btn11Click
+    OnClick = btn212Click
   end
   object btn211: TButton
     Left = 366
@@ -207,7 +216,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 11
-    OnClick = btn11Click
+    OnClick = btn211Click
   end
   object btn221: TButton
     Left = 366
@@ -222,7 +231,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 12
-    OnClick = btn11Click
+    OnClick = btn221Click
   end
   object btn222: TButton
     Left = 447
@@ -237,7 +246,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 13
-    OnClick = btn11Click
+    OnClick = btn222Click
   end
   object btn223: TButton
     Left = 528
@@ -252,7 +261,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 14
-    OnClick = btn11Click
+    OnClick = btn223Click
   end
   object btn231: TButton
     Left = 366
@@ -267,7 +276,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 15
-    OnClick = btn11Click
+    OnClick = btn231Click
   end
   object btn232: TButton
     Left = 447
@@ -282,7 +291,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 16
-    OnClick = btn11Click
+    OnClick = btn232Click
   end
   object btn233: TButton
     Left = 528
@@ -297,7 +306,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 17
-    OnClick = btn11Click
+    OnClick = btn233Click
   end
   object btnStart: TButton
     Left = 267
@@ -318,5 +327,9 @@ object Form1: TForm1
     OnTimer = timerBratTimer
     Left = 272
     Top = 216
+  end
+  object Timer1: TTimer
+    Left = 400
+    Top = 360
   end
 end
