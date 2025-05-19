@@ -32,7 +32,7 @@ type
     btn233: TButton;
     btnStart: TButton;
     BaseX: TLabel;
-    Label1: TLabel;
+    BaseO: TLabel;
 
     procedure FormCreate(Sender: TObject);
     procedure paintBackgroundPaint(Sender: TObject);
@@ -76,6 +76,8 @@ type
     angleOpenDreapta: Double;
     objectVisible: Boolean;
     object2Visible: Boolean;
+    ghearaStangaDeschisa: Boolean;
+    ghearaDreaptaDeschisa: Boolean;
 
     procedure AnimateArms;
     procedure AnimateBrate;
@@ -245,6 +247,8 @@ begin
   case AnimState of
     asBtnStart:
       begin
+      ghearaStangaDeschisa := True;
+      ghearaDreaptaDeschisa := True;
         d1 := Move(leftArmAngle1, DegToRad(90));
         d2 := Move(leftArmAngle2, DegToRad(-25));
         d3 := Move(leftArmAngle3, DegToRad(-25));
@@ -263,6 +267,7 @@ begin
       begin
       BaseX.Visible := False;
       objectVisible := True;
+      ghearaStangaDeschisa := False;
         d1 := Move(leftArmAngle1, DegToRad(100));
         d2 := Move(leftArmAngle2, DegToRad(-38));
         d3 := Move(leftArmAngle3, DegToRad(-38));
@@ -398,6 +403,8 @@ begin
       asBtn213:
       begin
       object2Visible := True;
+      BaseO.Visible := False;
+      ghearaDreaptaDeschisa := False;
         d1 := Move(rightArmAngle1, DegToRad(70));
         d2 := Move(rightArmAngle2, DegToRad(35));
         d3 := Move(rightArmAngle3, DegToRad(45));
@@ -405,6 +412,7 @@ begin
         if d1 and d2 and d3 and d4 then
         begin
         object2Visible := False;
+        BaseO.Visible := True;
           AnimState := asBtnStart;
           EnableAllButtons;
         end;
@@ -488,7 +496,6 @@ end;
 
 procedure TForm1.timerBratTimer(Sender: TObject);
 begin
-  AnimateBrate;
   AnimateArms;
 
   // Verificăm dacă timer-ul a fost setat pentru reactivare
@@ -581,17 +588,6 @@ begin
   j4 := OffsetPoint(j3, a1 + a2 + a3, L3);
   j5 := OffsetPoint(j4, a1 + a2 + a3 + a4, L4);
 
-  if objectVisible then
-begin
-  Canvas.Brush.Style := bsClear; // fundal transparent
-  Canvas.Font.Name := 'Arial';
-  Canvas.Font.Size := 36;
-  Canvas.Font.Style := [fsBold];
-  Canvas.Font.Color := clRed;
-
-  Canvas.TextOut(j5.X - Canvas.TextWidth('X') div 2, j5.Y - Canvas.TextHeight('X') div 2, 'X');
-end;
-
   // Baza robotului
   Canvas.Brush.Color := colDark;
   Canvas.Pen.Color := colDark;
@@ -623,7 +619,11 @@ end;
 
   // Gheare (gripper)
   totalAngle := a1 + a2 + a3 + a4;
-  openOffset := Round(MaxFingerSpread * Scale * (Sin(angleOpenStanga) * 0.5 + 0.5));
+  if ghearaStangaDeschisa then
+  openOffset := Round(MaxFingerSpread * Scale)
+else
+  openOffset := 4;
+
 
   Canvas.Pen.Width := Round(2 * Scale);
   Canvas.Pen.Color := colDark;
@@ -643,6 +643,15 @@ end;
 
   Canvas.Pen.Width := 2;
 
+          if objectVisible then
+begin
+  Canvas.Brush.Style := bsClear; // fundal transparent
+  Canvas.Font.Name := 'Arial';
+  Canvas.Font.Size := 36;
+  Canvas.Font.Color := clRed;
+
+  Canvas.TextOut(j5.X - Canvas.TextWidth('X') div 2, j5.Y - Canvas.TextHeight('X') div 2, 'X');
+end;
 end;
 
 procedure TForm1.DeseneazaBratDreapta(Canvas: TCanvas);
@@ -716,17 +725,6 @@ begin
   j4 := OffsetPoint(j3, a1 + a2 + a3, L3);
   j5 := OffsetPoint(j4, a1 + a2 + a3 + a4, L4);
 
-  if object2Visible then
-begin
-  Canvas.Brush.Style := bsClear; // fundal transparent
-  Canvas.Font.Name := 'Arial';
-  Canvas.Font.Size := 36;
-  Canvas.Font.Style := [fsBold];
-  Canvas.Font.Color := clBlue;
-
-  Canvas.TextOut(j5.X - Canvas.TextWidth('O') div 2, j5.Y - Canvas.TextHeight('O') div 2, 'O');
-end;
-
   // Baza robotului
   Canvas.Brush.Color := colDark;
   Canvas.Pen.Color := colDark;
@@ -758,7 +756,12 @@ end;
 
   // Gheare (gripper)
   totalAngle := a1 + a2 + a3 + a4;
-  openOffset := Round(MaxFingerSpread * Scale * (Sin(angleOpenStanga) * 0.5 + 0.5));
+
+  if ghearaDreaptaDeschisa then
+  openOffset := Round(MaxFingerSpread * Scale)
+else
+  openOffset := 4;
+
 
   Canvas.Pen.Width := Round(2 * Scale);
   Canvas.Pen.Color := colDark;
@@ -777,6 +780,17 @@ end;
   ]);
 
   Canvas.Pen.Width := 2;
+
+    if object2Visible then
+begin
+  Canvas.Brush.Style := bsClear; // fundal transparent
+  Canvas.Font.Name := 'Arial';
+  Canvas.Font.Size := 36;
+  Canvas.Font.Color := clBlue;
+
+  Canvas.TextOut(j5.X - Canvas.TextWidth('O') div 2, j5.Y - Canvas.TextHeight('O') div 2, 'O');
+end;
+
 end;
 
 

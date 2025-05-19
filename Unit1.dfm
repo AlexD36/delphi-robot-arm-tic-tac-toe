@@ -29,31 +29,31 @@ object Form1: TForm1
   object BaseX: TLabel
     Left = 208
     Top = 117
-    Width = 32
-    Height = 56
+    Width = 31
+    Height = 55
     Caption = 'X'
     Color = clNone
     Font.Charset = ANSI_CHARSET
     Font.Color = clRed
     Font.Height = -48
     Font.Name = 'Arial'
-    Font.Style = [fsBold]
+    Font.Style = []
     ParentColor = False
     ParentFont = False
     StyleName = 'fo'
   end
-  object Label1: TLabel
+  object BaseO: TLabel
     Left = 392
     Top = 117
     Width = 37
-    Height = 56
+    Height = 55
     Caption = 'O'
     Color = clNone
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlue
     Font.Height = -48
     Font.Name = 'Arial'
-    Font.Style = [fsBold]
+    Font.Style = []
     ParentColor = False
     ParentFont = False
     StyleName = 'fo'
