@@ -58,6 +58,23 @@ object Form1: TForm1
     ParentFont = False
     StyleName = 'fo'
   end
+  object versus: TLabel
+    Left = 257
+    Top = 133
+    Width = 112
+    Height = 24
+    Caption = 'Tic-Tac-Toe'
+    Color = clNone
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -21
+    Font.Name = 'Arial'
+    Font.Style = [fsItalic]
+    ParentColor = False
+    ParentFont = False
+    StyleName = 'fo'
+    OnClick = versusClick
+  end
   object btn11: TButton
     Left = 24
     Top = 24

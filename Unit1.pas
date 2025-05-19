@@ -33,6 +33,7 @@ type
     btnStart: TButton;
     BaseX: TLabel;
     BaseO: TLabel;
+    versus: TLabel;
 
     procedure FormCreate(Sender: TObject);
     procedure paintBackgroundPaint(Sender: TObject);
@@ -57,6 +58,7 @@ type
     procedure btn231Click(Sender: TObject);
     procedure btn232Click(Sender: TObject);
     procedure btn233Click(Sender: TObject);
+    procedure versusClick(Sender: TObject);
     private
     AnimState: TAnimationState;
     tickCount: Integer;
@@ -418,114 +420,154 @@ begin
       end;
       asBtn211:
       begin
+        BaseO.Visible := False;
+        object2Visible := True;
+        ghearaDreaptaDeschisa := False;
         d1 := Move(rightArmAngle1, DegToRad(135));
         d2 := Move(rightArmAngle2, DegToRad(10));
         d3 := Move(rightArmAngle3, DegToRad(10));
         d4 := Move(rightArmAngle4, DegToRad(3));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          object2Visible := False;
+          AnimState := asBtnStart;
+          BaseO.Visible := True;
           EnableAllButtons;
         end;
       end;
-      asBtn212:
+    asBtn212:
       begin
+        BaseO.Visible := False;
+        object2Visible := True;
+        ghearaDreaptaDeschisa := False;
         d1 := Move(rightArmAngle1, DegToRad(95));
         d2 := Move(rightArmAngle2, DegToRad(35));
         d3 := Move(rightArmAngle3, DegToRad(25));
         d4 := Move(rightArmAngle4, DegToRad(40));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          object2Visible := False;
+          AnimState := asBtnStart;
+          BaseO.Visible := True;
           EnableAllButtons;
         end;
       end;
-      asBtn213:
+    asBtn213:
       begin
-      object2Visible := True;
-      BaseO.Visible := False;
-      ghearaDreaptaDeschisa := False;
+        object2Visible := True;
+        BaseO.Visible := False;
+        ghearaDreaptaDeschisa := False;
         d1 := Move(rightArmAngle1, DegToRad(70));
         d2 := Move(rightArmAngle2, DegToRad(35));
         d3 := Move(rightArmAngle3, DegToRad(45));
         d4 := Move(rightArmAngle4, DegToRad(55));
         if d1 and d2 and d3 and d4 then
         begin
-        object2Visible := False;
-        BaseO.Visible := True;
+          object2Visible := False;
+          BaseO.Visible := True;
           AnimState := asBtnStart;
           EnableAllButtons;
         end;
       end;
-      asBtn221:
+    asBtn221:
       begin
+        BaseO.Visible := False;
+        object2Visible := True;
+        ghearaDreaptaDeschisa := False;
         d1 := Move(rightArmAngle1, DegToRad(132));
         d2 := Move(rightArmAngle2, DegToRad(20));
         d3 := Move(rightArmAngle3, DegToRad(20));
         d4 := Move(rightArmAngle4, DegToRad(13));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          object2Visible := False;
+          AnimState := asBtnStart;
+          BaseO.Visible := True;
           EnableAllButtons;
         end;
       end;
-      asBtn222:
+    asBtn222:
       begin
+        BaseO.Visible := False;
+        object2Visible := True;
+        ghearaDreaptaDeschisa := False;
         d1 := Move(rightArmAngle1, DegToRad(100));
         d2 := Move(rightArmAngle2, DegToRad(35));
         d3 := Move(rightArmAngle3, DegToRad(50));
-        d4 := Move(rightArmAngle4, DegToRad(30 ));
+        d4 := Move(rightArmAngle4, DegToRad(30));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          object2Visible := False;
+          AnimState := asBtnStart;
+          BaseO.Visible := True;
           EnableAllButtons;
         end;
       end;
-      asBtn223:
+    asBtn223:
       begin
+        BaseO.Visible := False;
+        object2Visible := True;
+        ghearaDreaptaDeschisa := False;
         d1 := Move(rightArmAngle1, DegToRad(70));
         d2 := Move(rightArmAngle2, DegToRad(45));
         d3 := Move(rightArmAngle3, DegToRad(60));
         d4 := Move(rightArmAngle4, DegToRad(62));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          object2Visible := False;
+          AnimState := asBtnStart;
+          BaseO.Visible := True;
           EnableAllButtons;
         end;
       end;
-      asBtn231:
+    asBtn231:
       begin
+        BaseO.Visible := False;
+        object2Visible := True;
+        ghearaDreaptaDeschisa := False;
         d1 := Move(rightArmAngle1, DegToRad(100));
         d2 := Move(rightArmAngle2, DegToRad(-38));
         d3 := Move(rightArmAngle3, DegToRad(-38));
         d4 := Move(rightArmAngle4, DegToRad(-38));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          object2Visible := False;
+          AnimState := asBtnStart;
+          BaseO.Visible := True;
           EnableAllButtons;
         end;
       end;
-      asBtn232:
+    asBtn232:
       begin
+        BaseO.Visible := False;
+        object2Visible := True;
+        ghearaDreaptaDeschisa := False;
         d1 := Move(rightArmAngle1, DegToRad(118));
         d2 := Move(rightArmAngle2, DegToRad(35));
         d3 := Move(rightArmAngle3, DegToRad(40));
         d4 := Move(rightArmAngle4, DegToRad(45));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          object2Visible := False;
+          AnimState := asBtnStart;
+          BaseO.Visible := True;
           EnableAllButtons;
         end;
       end;
-      asBtn233:
+    asBtn233:
       begin
+        BaseO.Visible := False;
+        object2Visible := True;
+        ghearaDreaptaDeschisa := False;
         d1 := Move(rightArmAngle1, DegToRad(100));
         d2 := Move(rightArmAngle2, DegToRad(-38));
         d3 := Move(rightArmAngle3, DegToRad(-38));
         d4 := Move(rightArmAngle4, DegToRad(-38));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          object2Visible := False;
+          AnimState := asBtnStart;
+          BaseO.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -556,7 +598,12 @@ begin
   paintBackground.Invalidate;
 end;
 
-  //BaseY = 360;
+  procedure TForm1.versusClick(Sender: TObject);
+begin
+
+end;
+
+//BaseY = 360;
 procedure TForm1.DeseneazaBratStanga(Canvas: TCanvas);
 const
   BaseX = 70;
