@@ -280,99 +280,139 @@ begin
           EnableAllButtons;
         end;
       end;
-        asBtn12:
+         asBtn12:
       begin
+        BaseX.Visible := False;
+        objectVisible := True;
+        ghearaStangaDeschisa := False;
         d1 := Move(leftArmAngle1, DegToRad(70));
         d2 := Move(leftArmAngle2, DegToRad(-20));
         d3 := Move(leftArmAngle3, DegToRad(-30));
         d4 := Move(leftArmAngle4, DegToRad(-20));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          objectVisible := False;
+          AnimState := asBtnStart;
+          BaseX.Visible := True;
           EnableAllButtons;
         end;
       end;
     asBtn13:
       begin
+        BaseX.Visible := False;
+        objectVisible := True;
+        ghearaStangaDeschisa := False;
         d1 := Move(leftArmAngle1, DegToRad(30));
         d2 := Move(leftArmAngle2, DegToRad(0));
         d3 := Move(leftArmAngle3, DegToRad(0));
         d4 := Move(leftArmAngle4, DegToRad(0));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          objectVisible := False;
+          AnimState := asBtnStart;
+          BaseX.Visible := True;
           EnableAllButtons;
         end;
       end;
     asBtn21:
       begin
+        BaseX.Visible := False;
+        objectVisible := True;
+        ghearaStangaDeschisa := False;
         d1 := Move(leftArmAngle1, DegToRad(110));
         d2 := Move(leftArmAngle2, DegToRad(-55));
         d3 := Move(leftArmAngle3, DegToRad(-50));
         d4 := Move(leftArmAngle4, DegToRad(-55));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          objectVisible := False;
+          AnimState := asBtnStart;
+          BaseX.Visible := True;
           EnableAllButtons;
         end;
       end;
     asBtn22:
       begin
+        BaseX.Visible := False;
+        objectVisible := True;
+        ghearaStangaDeschisa := False;
         d1 := Move(leftArmAngle1, DegToRad(80));
         d2 := Move(leftArmAngle2, DegToRad(-50));
         d3 := Move(leftArmAngle3, DegToRad(-50));
         d4 := Move(leftArmAngle4, DegToRad(20));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          objectVisible := False;
+          AnimState := asBtnStart;
+          BaseX.Visible := True;
           EnableAllButtons;
         end;
       end;
     asBtn23:
       begin
+        BaseX.Visible := False;
+        objectVisible := True;
+        ghearaStangaDeschisa := False;
         d1 := Move(leftArmAngle1, DegToRad(37));
         d2 := Move(leftArmAngle2, DegToRad(-16));
         d3 := Move(leftArmAngle3, DegToRad(-10));
         d4 := Move(leftArmAngle4, DegToRad(-5));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          objectVisible := False;
+          AnimState := asBtnStart;
+          BaseX.Visible := True;
           EnableAllButtons;
         end;
       end;
     asBtn31:
       begin
+        BaseX.Visible := False;
+        objectVisible := True;
+        ghearaStangaDeschisa := False;
         d1 := Move(leftArmAngle1, DegToRad(110));
         d2 := Move(leftArmAngle2, DegToRad(-65));
         d3 := Move(leftArmAngle3, DegToRad(-65));
         d4 := Move(leftArmAngle4, DegToRad(-45));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          objectVisible := False;
+          AnimState := asBtnStart;
+          BaseX.Visible := True;
           EnableAllButtons;
         end;
       end;
     asBtn32:
       begin
+        BaseX.Visible := False;
+        objectVisible := True;
+        ghearaStangaDeschisa := False;
         d1 := Move(leftArmAngle1, DegToRad(85));
         d2 := Move(leftArmAngle2, DegToRad(-65));
         d3 := Move(leftArmAngle3, DegToRad(-65));
         d4 := Move(leftArmAngle4, DegToRad(30));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          objectVisible := False;
+          AnimState := asBtnStart;
+          BaseX.Visible := True;
           EnableAllButtons;
         end;
       end;
     asBtn33:
       begin
+        BaseX.Visible := False;
+        objectVisible := True;
+        ghearaStangaDeschisa := False;
         d1 := Move(leftArmAngle1, DegToRad(45));
         d2 := Move(leftArmAngle2, DegToRad(-38));
         d3 := Move(leftArmAngle3, DegToRad(-15));
         d4 := Move(leftArmAngle4, DegToRad(-10));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+          objectVisible := False;
+          AnimState := asBtnStart;
+          BaseX.Visible := True;
           EnableAllButtons;
         end;
       end;
