@@ -31,7 +31,8 @@ type
     btn232: TButton;
     btn233: TButton;
     btnStart: TButton;
-    PaintBox1: TPaintBox;
+    BaseX: TLabel;
+    Label1: TLabel;
 
     procedure FormCreate(Sender: TObject);
     procedure paintBackgroundPaint(Sender: TObject);
@@ -73,6 +74,8 @@ type
     rightArmAngle4: Double;
     angleOpenStanga: Double;
     angleOpenDreapta: Double;
+    objectVisible: Boolean;
+    object2Visible: Boolean;
 
     procedure AnimateArms;
     procedure AnimateBrate;
@@ -138,6 +141,7 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+
   DoubleBuffered := True;
 
   tickCount := 0;
@@ -155,6 +159,7 @@ begin
 
 
   angleOpenStanga := 0;
+  objectVisible := False;
 
   btn11.OnClick := btn11Click;
   btn12.OnClick := btn12Click;
@@ -244,10 +249,10 @@ begin
         d2 := Move(leftArmAngle2, DegToRad(-25));
         d3 := Move(leftArmAngle3, DegToRad(-25));
         d4 := Move(leftArmAngle4, DegToRad(-25));
-        d5 := Move(rightArmAngle1, DegToRad(75));
+        d5 := Move(rightArmAngle1, DegToRad(73));
         d6 := Move(rightArmAngle2, DegToRad(25));
         d7 := Move(rightArmAngle3, DegToRad(25));
-        d8 := Move(rightArmAngle4, DegToRad(45));
+        d8 := Move(rightArmAngle4, DegToRad(54));
         if d1 and d2 and d3 and d4 and d5 and d6 and d7 and d8 then
         begin
           AnimState := asIdle;
@@ -256,13 +261,17 @@ begin
       end;
     asBtn11:
       begin
+      BaseX.Visible := False;
+      objectVisible := True;
         d1 := Move(leftArmAngle1, DegToRad(100));
         d2 := Move(leftArmAngle2, DegToRad(-38));
         d3 := Move(leftArmAngle3, DegToRad(-38));
         d4 := Move(leftArmAngle4, DegToRad(-38));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+        objectVisible := False;
+          AnimState := asBtnStart;
+          BaseX.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -388,13 +397,15 @@ begin
       end;
       asBtn213:
       begin
+      object2Visible := True;
         d1 := Move(rightArmAngle1, DegToRad(70));
         d2 := Move(rightArmAngle2, DegToRad(35));
         d3 := Move(rightArmAngle3, DegToRad(45));
         d4 := Move(rightArmAngle4, DegToRad(55));
         if d1 and d2 and d3 and d4 then
         begin
-          AnimState := asIdle;
+        object2Visible := False;
+          AnimState := asBtnStart;
           EnableAllButtons;
         end;
       end;
@@ -570,6 +581,17 @@ begin
   j4 := OffsetPoint(j3, a1 + a2 + a3, L3);
   j5 := OffsetPoint(j4, a1 + a2 + a3 + a4, L4);
 
+  if objectVisible then
+begin
+  Canvas.Brush.Style := bsClear; // fundal transparent
+  Canvas.Font.Name := 'Arial';
+  Canvas.Font.Size := 36;
+  Canvas.Font.Style := [fsBold];
+  Canvas.Font.Color := clRed;
+
+  Canvas.TextOut(j5.X - Canvas.TextWidth('X') div 2, j5.Y - Canvas.TextHeight('X') div 2, 'X');
+end;
+
   // Baza robotului
   Canvas.Brush.Color := colDark;
   Canvas.Pen.Color := colDark;
@@ -620,6 +642,7 @@ begin
   ]);
 
   Canvas.Pen.Width := 2;
+
 end;
 
 procedure TForm1.DeseneazaBratDreapta(Canvas: TCanvas);
@@ -692,6 +715,17 @@ begin
   j3 := OffsetPoint(j2, a1 + a2, L2);
   j4 := OffsetPoint(j3, a1 + a2 + a3, L3);
   j5 := OffsetPoint(j4, a1 + a2 + a3 + a4, L4);
+
+  if object2Visible then
+begin
+  Canvas.Brush.Style := bsClear; // fundal transparent
+  Canvas.Font.Name := 'Arial';
+  Canvas.Font.Size := 36;
+  Canvas.Font.Style := [fsBold];
+  Canvas.Font.Color := clBlue;
+
+  Canvas.TextOut(j5.X - Canvas.TextWidth('O') div 2, j5.Y - Canvas.TextHeight('O') div 2, 'O');
+end;
 
   // Baza robotului
   Canvas.Brush.Color := colDark;

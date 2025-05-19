@@ -24,19 +24,39 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     OnPaint = paintBackgroundPaint
-    ExplicitLeft = -8
+    ExplicitTop = -8
   end
-  object Image1: TImage
-    Left = 511
-    Top = 400
-    Width = 105
-    Height = 105
+  object BaseX: TLabel
+    Left = 208
+    Top = 117
+    Width = 32
+    Height = 56
+    Caption = 'X'
+    Color = clNone
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -48
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    StyleName = 'fo'
   end
-  object PaintBox1: TPaintBox
-    Left = 288
-    Top = 336
-    Width = 105
-    Height = 105
+  object Label1: TLabel
+    Left = 392
+    Top = 117
+    Width = 37
+    Height = 56
+    Caption = 'O'
+    Color = clNone
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -48
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    StyleName = 'fo'
   end
   object btn11: TButton
     Left = 24
@@ -327,9 +347,5 @@ object Form1: TForm1
     OnTimer = timerBratTimer
     Left = 272
     Top = 216
-  end
-  object Timer1: TTimer
-    Left = 400
-    Top = 360
   end
 end
