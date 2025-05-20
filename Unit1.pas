@@ -53,6 +53,7 @@ type
     o33: TLabel;
     o32: TLabel;
     o31: TLabel;
+    btnReset: TButton;
 
     procedure FormCreate(Sender: TObject);
     procedure paintBackgroundPaint(Sender: TObject);
@@ -77,6 +78,7 @@ type
     procedure btn231Click(Sender: TObject);
     procedure btn232Click(Sender: TObject);
     procedure btn233Click(Sender: TObject);
+    procedure btnResetClick(Sender: TObject);
     procedure versusClick(Sender: TObject);
     private
     AnimState: TAnimationState;
@@ -119,6 +121,7 @@ implementation
 procedure TForm1.DisableAllButtons;
 begin
   btnStart.Enabled := False;
+  btnReset.Enabled := False;
   btn11.Enabled := False;
   btn12.Enabled := False;
   btn13.Enabled := False;
@@ -142,6 +145,7 @@ end;
 procedure TForm1.EnableAllButtons;
 begin
   btnStart.Enabled := True;
+  btnReset.Enabled := True;
   btn11.Enabled := True;
   btn12.Enabled := True;
   btn13.Enabled := True;
@@ -1136,6 +1140,50 @@ begin
     DisableAllButtons;
   end;
 end;
+
+procedure TForm1.btnResetClick(Sender: TObject);
+begin
+    x11.Visible := False;
+    x12.Visible := False;
+    x13.Visible := False;
+    x21.Visible := False;
+    x22.Visible := False;
+    x23.Visible := False;
+    x31.Visible := False;
+    x32.Visible := False;
+    x33.Visible := False;
+    o11.Visible := False;
+    o12.Visible := False;
+    o13.Visible := False;
+    o21.Visible := False;
+    o22.Visible := False;
+    o23.Visible := False;
+    o31.Visible := False;
+    o32.Visible := False;
+    o33.Visible := False;
+    // Braț stâng (X)
+  btn11.Font.Style := [];
+  btn12.Font.Style := [];
+  btn13.Font.Style := [];
+  btn21.Font.Style := [];
+  btn22.Font.Style := [];
+  btn23.Font.Style := [];
+  btn31.Font.Style := [];
+  btn32.Font.Style := [];
+  btn33.Font.Style := [];
+
+  // Braț drept (O)
+  btn211.Font.Style := [];
+  btn212.Font.Style := [];
+  btn213.Font.Style := [];
+  btn221.Font.Style := [];
+  btn222.Font.Style := [];
+  btn223.Font.Style := [];
+  btn231.Font.Style := [];
+  btn232.Font.Style := [];
+  btn233.Font.Style := [];
+  end;
+
 
 end.
 

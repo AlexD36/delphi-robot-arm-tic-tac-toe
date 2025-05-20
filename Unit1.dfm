@@ -713,7 +713,7 @@ object Form1: TForm1
   end
   object btnStart: TButton
     Left = 267
-    Top = 55
+    Top = 24
     Width = 93
     Height = 25
     Cursor = crHandPoint
@@ -726,6 +726,22 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 18
     OnClick = btnStartClick
+  end
+  object btnReset: TButton
+    Left = 267
+    Top = 55
+    Width = 93
+    Height = 25
+    Cursor = crHandPoint
+    Caption = 'RESET'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clBlue
+    Font.Height = -16
+    Font.Name = 'Comic Sans MS'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 19
+    OnClick = btnResetClick
   end
   object timerBrat: TTimer
     OnTimer = timerBratTimer
