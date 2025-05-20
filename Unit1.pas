@@ -34,6 +34,25 @@ type
     BaseX: TLabel;
     BaseO: TLabel;
     versus: TLabel;
+    x11: TLabel;
+    x12: TLabel;
+    x13: TLabel;
+    x23: TLabel;
+    x21: TLabel;
+    x22: TLabel;
+    x33: TLabel;
+    x31: TLabel;
+    x32: TLabel;
+    PaintBox1: TPaintBox;
+    o11: TLabel;
+    o12: TLabel;
+    o13: TLabel;
+    o21: TLabel;
+    o22: TLabel;
+    o23: TLabel;
+    o33: TLabel;
+    o32: TLabel;
+    o31: TLabel;
 
     procedure FormCreate(Sender: TObject);
     procedure paintBackgroundPaint(Sender: TObject);
@@ -145,7 +164,6 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-
   DoubleBuffered := True;
 
   tickCount := 0;
@@ -185,28 +203,58 @@ begin
 end;
 
 procedure TForm1.paintBackgroundPaint(Sender: TObject);
+var
+  C: TCanvas;
+  TopX1, TopX2, TopY: Integer;
+  BotX1, BotX2, BotY: Integer;
 begin
-  with paintBackground.Canvas do
-  begin
-    Brush.Color := clWhite;
-    FillRect(paintBackground.ClientRect);
+  C := paintBackground.Canvas;
 
-    // tabla de X și O
-    Pen.Color := clBlack;
-    Pen.Width := 2;
+  // Fundal gri-deschis
+  C.Brush.Color := RGB(220, 220, 220);;
+  C.FillRect(paintBackground.ClientRect);
 
-    // Linii diagonale în loc de verticale
-    MoveTo(270, 180); LineTo(230, 360);
-    MoveTo(350, 180); LineTo(310, 360);
+  //  Zona cu perspectivă (trapez)
+  TopX1 := 50;
+  TopX2 := 570;
+  TopY  := 400;
 
-    // Linii orizontale
-    MoveTo(170, 240); LineTo(430, 240);
-    MoveTo(150, 300); LineTo(410, 300);
+  BotX1 := 0;
+  BotX2 := 624;
+  BotY  := 440;
 
-  end;
+  C.Pen.Color := clBlack;
+  C.Pen.Width := 2;
+  C.Brush.Style := bsClear;
 
-  DeseneazaBratStanga(paintBackground.Canvas);
-  DeseneazaBratDreapta(paintBackground.Canvas);
+  // Trapez (plan de lucru în perspectivă)
+  C.Polygon([
+    Point(BotX1, BotY),
+    Point(TopX1, TopY),
+    Point(TopX2, TopY),
+    Point(BotX2, BotY)
+  ]);
+   C.MoveTo(50, 400); C.LineTo(50, 0);
+   C.MoveTo(570, 400); C.LineTo(570, 0);
+   C.MoveTo(1, 440); C.LineTo(1, 0);
+   C.MoveTo(623, 440); C.LineTo(623, 0);
+
+
+  // Tabla de X și O (rămâne)
+  C.Pen.Color := clBlack;
+  C.Pen.Width := 3;
+
+  // Linii diagonale
+  C.MoveTo(270, 180); C.LineTo(230, 360);
+  C.MoveTo(350, 180); C.LineTo(310, 360);
+
+  // Linii orizontale
+  C.MoveTo(170, 240); C.LineTo(430, 240);
+  C.MoveTo(150, 300); C.LineTo(410, 300);
+
+  // Brațele robotice
+  DeseneazaBratStanga(C);
+  DeseneazaBratDreapta(C);
 end;
 
 procedure TForm1.AnimateBrate;
@@ -254,13 +302,14 @@ begin
         d1 := Move(leftArmAngle1, DegToRad(90));
         d2 := Move(leftArmAngle2, DegToRad(-25));
         d3 := Move(leftArmAngle3, DegToRad(-25));
-        d4 := Move(leftArmAngle4, DegToRad(-25));
-        d5 := Move(rightArmAngle1, DegToRad(73));
+        d4 := Move(leftArmAngle4, DegToRad(-28));
+        d5 := Move(rightArmAngle1, DegToRad(72));
         d6 := Move(rightArmAngle2, DegToRad(25));
-        d7 := Move(rightArmAngle3, DegToRad(25));
-        d8 := Move(rightArmAngle4, DegToRad(54));
+        d7 := Move(rightArmAngle3, DegToRad(29));
+        d8 := Move(rightArmAngle4, DegToRad(57));
         if d1 and d2 and d3 and d4 and d5 and d6 and d7 and d8 then
         begin
+
           AnimState := asIdle;
           EnableAllButtons;
         end;
@@ -279,6 +328,7 @@ begin
         objectVisible := False;
           AnimState := asBtnStart;
           BaseX.Visible := True;
+          x11.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -287,15 +337,16 @@ begin
         BaseX.Visible := False;
         objectVisible := True;
         ghearaStangaDeschisa := False;
-        d1 := Move(leftArmAngle1, DegToRad(70));
-        d2 := Move(leftArmAngle2, DegToRad(-20));
-        d3 := Move(leftArmAngle3, DegToRad(-30));
-        d4 := Move(leftArmAngle4, DegToRad(-20));
+        d1 := Move(leftArmAngle1, DegToRad(66));
+        d2 := Move(leftArmAngle2, DegToRad(-18));
+        d3 := Move(leftArmAngle3, DegToRad(-28));
+        d4 := Move(leftArmAngle4, DegToRad(-17));
         if d1 and d2 and d3 and d4 then
         begin
           objectVisible := False;
           AnimState := asBtnStart;
           BaseX.Visible := True;
+          x12.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -313,6 +364,7 @@ begin
           objectVisible := False;
           AnimState := asBtnStart;
           BaseX.Visible := True;
+          x13.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -330,6 +382,7 @@ begin
           objectVisible := False;
           AnimState := asBtnStart;
           BaseX.Visible := True;
+          x21.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -347,6 +400,7 @@ begin
           objectVisible := False;
           AnimState := asBtnStart;
           BaseX.Visible := True;
+          x22.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -364,6 +418,7 @@ begin
           objectVisible := False;
           AnimState := asBtnStart;
           BaseX.Visible := True;
+          x23.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -381,6 +436,7 @@ begin
           objectVisible := False;
           AnimState := asBtnStart;
           BaseX.Visible := True;
+          x31.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -389,15 +445,16 @@ begin
         BaseX.Visible := False;
         objectVisible := True;
         ghearaStangaDeschisa := False;
-        d1 := Move(leftArmAngle1, DegToRad(85));
+        d1 := Move(leftArmAngle1, DegToRad(80));
         d2 := Move(leftArmAngle2, DegToRad(-65));
-        d3 := Move(leftArmAngle3, DegToRad(-65));
-        d4 := Move(leftArmAngle4, DegToRad(30));
+        d3 := Move(leftArmAngle3, DegToRad(-57));
+        d4 := Move(leftArmAngle4, DegToRad(33));
         if d1 and d2 and d3 and d4 then
         begin
           objectVisible := False;
           AnimState := asBtnStart;
           BaseX.Visible := True;
+          x32.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -415,6 +472,7 @@ begin
           objectVisible := False;
           AnimState := asBtnStart;
           BaseX.Visible := True;
+          x33.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -423,15 +481,16 @@ begin
         BaseO.Visible := False;
         object2Visible := True;
         ghearaDreaptaDeschisa := False;
-        d1 := Move(rightArmAngle1, DegToRad(135));
-        d2 := Move(rightArmAngle2, DegToRad(10));
-        d3 := Move(rightArmAngle3, DegToRad(10));
-        d4 := Move(rightArmAngle4, DegToRad(3));
+        d1 := Move(rightArmAngle1, DegToRad(148));
+        d2 := Move(rightArmAngle2, DegToRad(0));
+        d3 := Move(rightArmAngle3, DegToRad(0));
+        d4 := Move(rightArmAngle4, DegToRad(0));
         if d1 and d2 and d3 and d4 then
         begin
           object2Visible := False;
           AnimState := asBtnStart;
           BaseO.Visible := True;
+          o11.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -449,6 +508,7 @@ begin
           object2Visible := False;
           AnimState := asBtnStart;
           BaseO.Visible := True;
+          o12.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -466,6 +526,7 @@ begin
           object2Visible := False;
           BaseO.Visible := True;
           AnimState := asBtnStart;
+          o13.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -474,15 +535,16 @@ begin
         BaseO.Visible := False;
         object2Visible := True;
         ghearaDreaptaDeschisa := False;
-        d1 := Move(rightArmAngle1, DegToRad(132));
-        d2 := Move(rightArmAngle2, DegToRad(20));
-        d3 := Move(rightArmAngle3, DegToRad(20));
-        d4 := Move(rightArmAngle4, DegToRad(13));
+        d1 := Move(rightArmAngle1, DegToRad(145));
+        d2 := Move(rightArmAngle2, DegToRad(10));
+        d3 := Move(rightArmAngle3, DegToRad(10));
+        d4 := Move(rightArmAngle4, DegToRad(10));
         if d1 and d2 and d3 and d4 then
         begin
           object2Visible := False;
           AnimState := asBtnStart;
           BaseO.Visible := True;
+          o21.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -493,13 +555,14 @@ begin
         ghearaDreaptaDeschisa := False;
         d1 := Move(rightArmAngle1, DegToRad(100));
         d2 := Move(rightArmAngle2, DegToRad(35));
-        d3 := Move(rightArmAngle3, DegToRad(50));
-        d4 := Move(rightArmAngle4, DegToRad(30));
+        d3 := Move(rightArmAngle3, DegToRad(40));
+        d4 := Move(rightArmAngle4, DegToRad(39));
         if d1 and d2 and d3 and d4 then
         begin
           object2Visible := False;
           AnimState := asBtnStart;
           BaseO.Visible := True;
+          o22.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -511,12 +574,13 @@ begin
         d1 := Move(rightArmAngle1, DegToRad(70));
         d2 := Move(rightArmAngle2, DegToRad(45));
         d3 := Move(rightArmAngle3, DegToRad(60));
-        d4 := Move(rightArmAngle4, DegToRad(62));
+        d4 := Move(rightArmAngle4, DegToRad(55));
         if d1 and d2 and d3 and d4 then
         begin
           object2Visible := False;
           AnimState := asBtnStart;
           BaseO.Visible := True;
+          o23.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -525,15 +589,16 @@ begin
         BaseO.Visible := False;
         object2Visible := True;
         ghearaDreaptaDeschisa := False;
-        d1 := Move(rightArmAngle1, DegToRad(100));
-        d2 := Move(rightArmAngle2, DegToRad(-38));
-        d3 := Move(rightArmAngle3, DegToRad(-38));
-        d4 := Move(rightArmAngle4, DegToRad(-38));
+        d1 := Move(rightArmAngle1, DegToRad(160));
+        d2 := Move(rightArmAngle2, DegToRad(10));
+        d3 := Move(rightArmAngle3, DegToRad(10));
+        d4 := Move(rightArmAngle4, DegToRad(10));
         if d1 and d2 and d3 and d4 then
         begin
           object2Visible := False;
           AnimState := asBtnStart;
           BaseO.Visible := True;
+          o31.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -545,12 +610,13 @@ begin
         d1 := Move(rightArmAngle1, DegToRad(118));
         d2 := Move(rightArmAngle2, DegToRad(35));
         d3 := Move(rightArmAngle3, DegToRad(40));
-        d4 := Move(rightArmAngle4, DegToRad(45));
+        d4 := Move(rightArmAngle4, DegToRad(49));
         if d1 and d2 and d3 and d4 then
         begin
           object2Visible := False;
           AnimState := asBtnStart;
           BaseO.Visible := True;
+          o32.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -559,15 +625,16 @@ begin
         BaseO.Visible := False;
         object2Visible := True;
         ghearaDreaptaDeschisa := False;
-        d1 := Move(rightArmAngle1, DegToRad(100));
-        d2 := Move(rightArmAngle2, DegToRad(-38));
-        d3 := Move(rightArmAngle3, DegToRad(-38));
-        d4 := Move(rightArmAngle4, DegToRad(-38));
+        d1 := Move(rightArmAngle1, DegToRad(80));
+        d2 := Move(rightArmAngle2, DegToRad(65));
+        d3 := Move(rightArmAngle3, DegToRad(55));
+        d4 := Move(rightArmAngle4, DegToRad(59));
         if d1 and d2 and d3 and d4 then
         begin
           object2Visible := False;
           AnimState := asBtnStart;
           BaseO.Visible := True;
+          o33.Visible := True;
           EnableAllButtons;
         end;
       end;
@@ -625,7 +692,7 @@ const
 
   // Dimensiuni bază
   BaseW = Round(60 * Scale);
-  BaseH = Round(30 * Scale);
+  BaseH = Round(90);
   CornerR = Round(10 * Scale);
 
   // Lungime și deschidere gheare
@@ -664,9 +731,9 @@ begin
   a4 := leftArmAngle4;
 
   // Culori
-  colMain  := RGB(200, 200, 200);
-  colDark  := RGB(50, 50, 50);
-  colLight := RGB(180, 180, 180);
+  colMain  := RGB(50, 50, 50);
+  colDark  := RGB(200, 100, 100);
+  colLight := RGB(200, 100, 100);
 
   // Poziții articulatii
   j1 := Point(BaseX, BaseY);
@@ -676,7 +743,7 @@ begin
   j5 := OffsetPoint(j4, a1 + a2 + a3 + a4, L4);
 
   // Baza robotului
-  Canvas.Brush.Color := colDark;
+  Canvas.Brush.Color := colMain;
   Canvas.Pen.Color := colDark;
   Canvas.RoundRect(
     j1.X - BaseW div 2, j1.Y,
@@ -733,7 +800,7 @@ else
           if objectVisible then
 begin
   Canvas.Brush.Style := bsClear; // fundal transparent
-  Canvas.Font.Name := 'Arial';
+  Canvas.Font.Name := 'Comic Sans MS';
   Canvas.Font.Size := 36;
   Canvas.Font.Color := clRed;
 
@@ -762,7 +829,7 @@ const
 
   // Dimensiuni bază
   BaseW = Round(60 * Scale);
-  BaseH = Round(30 * Scale);
+  BaseH = Round(90);
   CornerR = Round(10 * Scale);
 
   // Lungime și deschidere gheare
@@ -801,9 +868,9 @@ begin
   a4 := rightArmAngle4;
 
   // Culori
-  colMain  := RGB(200, 200, 200);
-  colDark  := RGB(50, 50, 50);
-  colLight := RGB(180, 180, 180);
+  colMain  := RGB(50, 50, 50);
+  colDark  := RGB(80, 120, 200);
+  colLight := RGB(80, 120, 200);
 
   // Poziții articulatii
   j1 := Point(BaseX, BaseY);
@@ -813,7 +880,7 @@ begin
   j5 := OffsetPoint(j4, a1 + a2 + a3 + a4, L4);
 
   // Baza robotului
-  Canvas.Brush.Color := colDark;
+  Canvas.Brush.Color := colMain;
   Canvas.Pen.Color := colDark;
   Canvas.RoundRect(
     j1.X - BaseW div 2, j1.Y,
@@ -871,7 +938,7 @@ else
     if object2Visible then
 begin
   Canvas.Brush.Style := bsClear; // fundal transparent
-  Canvas.Font.Name := 'Arial';
+  Canvas.Font.Name := 'Comic Sans MS';
   Canvas.Font.Size := 36;
   Canvas.Font.Color := clBlue;
 
@@ -880,10 +947,10 @@ end;
 
 end;
 
-
-//Proceduri pentru brat x
+                     //proceduri pentru butoane brat x
 procedure TForm1.btn11Click(Sender: TObject);
 begin
+  btn11.Font.Style := btn11.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn11;
@@ -893,6 +960,7 @@ end;
 
 procedure TForm1.btn12Click(Sender: TObject);
 begin
+  btn12.Font.Style := btn12.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn12;
@@ -902,6 +970,7 @@ end;
 
 procedure TForm1.btn13Click(Sender: TObject);
 begin
+  btn13.Font.Style := btn13.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn13;
@@ -911,6 +980,7 @@ end;
 
 procedure TForm1.btn21Click(Sender: TObject);
 begin
+  btn21.Font.Style := btn21.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn21;
@@ -920,6 +990,7 @@ end;
 
 procedure TForm1.btn22Click(Sender: TObject);
 begin
+  btn22.Font.Style := btn22.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn22;
@@ -929,6 +1000,7 @@ end;
 
 procedure TForm1.btn23Click(Sender: TObject);
 begin
+  btn23.Font.Style := btn23.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn23;
@@ -938,6 +1010,7 @@ end;
 
 procedure TForm1.btn31Click(Sender: TObject);
 begin
+  btn31.Font.Style := btn31.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn31;
@@ -947,6 +1020,7 @@ end;
 
 procedure TForm1.btn32Click(Sender: TObject);
 begin
+  btn32.Font.Style := btn32.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn32;
@@ -956,6 +1030,7 @@ end;
 
 procedure TForm1.btn33Click(Sender: TObject);
 begin
+  btn33.Font.Style := btn33.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn33;
@@ -974,6 +1049,7 @@ end;
            //proceduri pentru butoane brat 0
 procedure TForm1.btn211Click(Sender: TObject);
 begin
+  btn211.Font.Style := btn211.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn211;
@@ -983,6 +1059,7 @@ end;
 
 procedure TForm1.btn212Click(Sender: TObject);
 begin
+  btn212.Font.Style := btn212.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn212;
@@ -992,6 +1069,7 @@ end;
 
 procedure TForm1.btn213Click(Sender: TObject);
 begin
+  btn213.Font.Style := btn213.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn213;
@@ -1001,6 +1079,7 @@ end;
 
 procedure TForm1.btn221Click(Sender: TObject);
 begin
+  btn221.Font.Style := btn221.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn221;
@@ -1010,6 +1089,7 @@ end;
 
 procedure TForm1.btn222Click(Sender: TObject);
 begin
+  btn222.Font.Style := btn222.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn222;
@@ -1019,6 +1099,7 @@ end;
 
 procedure TForm1.btn223Click(Sender: TObject);
 begin
+  btn223.Font.Style := btn223.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn223;
@@ -1028,6 +1109,7 @@ end;
 
 procedure TForm1.btn231Click(Sender: TObject);
 begin
+  btn231.Font.Style := btn231.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn231;
@@ -1037,6 +1119,7 @@ end;
 
 procedure TForm1.btn232Click(Sender: TObject);
 begin
+  btn232.Font.Style := btn232.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn232;
@@ -1046,11 +1129,13 @@ end;
 
 procedure TForm1.btn233Click(Sender: TObject);
 begin
+  btn233.Font.Style := btn233.Font.Style + [fsStrikeOut];
   if AnimState = asIdle then
   begin
     AnimState := asBtn233;
     DisableAllButtons;
   end;
 end;
+
 end.
 
