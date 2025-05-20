@@ -5,7 +5,7 @@
 
 **Delphi Robot Arm Tic-Tac-Toe** is a graphical Tic-Tac-Toe game built in Delphi VCL, where two animated robotic arms take turns playing against each other. Each arm places either X or O on a 3x3 game board, rendered with perspective and realistic movement.
 
-![image](https://github.com/user-attachments/assets/66a0dc47-da9b-4504-a616-2ac3d1985d6c)
+![image](https://github.com/user-attachments/assets/6b303ff6-3801-4f50-9c57-6f498e948587)
 
 ## Features
 
