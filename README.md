@@ -3,14 +3,17 @@
 
 ![Delphi](https://img.shields.io/badge/Delphi-Embarcadero-red?style=flat-square)
 
-**Delphi Robot Arm Tic-Tac-Toe** is a graphical Tic-Tac-Toe game built in Delphi VCL, featuring a robot arm that plays against the user. The game is designed with two dashboards—one where the robotic arm places Xs, and one where the human player places Os. The robot arm is visually animated to simulate realistic movement for each turn.
+**Delphi Robot Arm Tic-Tac-Toe** is a graphical Tic-Tac-Toe game built in Delphi VCL, where two animated robotic arms take turns playing against each other. Each arm places either X or O on a 3x3 game board, rendered with perspective and realistic movement.
+
+![image](https://github.com/user-attachments/assets/c69d7f7a-b1ed-4f48-84e6-ad7dc744c1f7)
 
 ## Features
 
-* **Interactive Gameplay:** Classic 3x3 Tic-Tac-Toe game between a user and a simulated robot arm.
-* **Dual Dashboards:** Separate visual zones for the robot (X) and user (O) moves.
-* **Robot Arm Animation:** The robot arm moves and places Xs on the board with smooth motion.
+* **Interactive Gameplay:** Classic 3x3 Tic-Tac-Toe game between 2 simulated robot arms.
+* **Dual Dashboards:** Separate visual zones for the first robot (X) and the other one (O) moves.
+* **Robot Arm Animation:** The robot arm moves and places Xs and Os on the board with smooth motion.
 * **Visual Feedback:** All moves are displayed in real time using VCL shapes and motion simulation.
+* **Strikeout effect** Pressed buttons are visually marked with a line-through (strikeout) to indicate occupation.
 
 ## Installation
 
